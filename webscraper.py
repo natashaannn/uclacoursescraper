@@ -1,5 +1,5 @@
-import codecs
 import pandas as pd
+import codecs
 import bs4 #importing the beautifulsoup library i.e. the webscraping parser
 from urllib.request import urlopen as uReq #module that opens URLs
 from bs4 import BeautifulSoup as soup #renaming beautiful soup into something easier to type
@@ -12,6 +12,8 @@ uClient.close() #exiting the requester so that it won't keep requesting data (mi
 catalog_page = soup(catalog_html,'html.parser')  #parsing the downloaded data to give a nested data structure for us to navigate
 
 with codecs.open("majors.csv", 'w', 'utf8') as f:
+    f.write("Major" + "," + "Courses" + "," + "\n")
+
     list = catalog_page.findAll('a',{'class':"main"}) #finds data that corresponds to attributes such as class or id
 
     for major in list: #creating the loop for code to run on ALL divs, not just first one
@@ -26,9 +28,17 @@ with codecs.open("majors.csv", 'w', 'utf8') as f:
 
         header = link_page.find('div',{'class':"main-text"}).h1.text
 
+        maintext = link_page.findAll('p')
+
+        course = ""
+
+        for paragraph in maintext:
+            paragraphtext = paragraph.text
+            if "Required" in paragraphtext:
+                course = course + paragraphtext
+
         if " BA"  in header or " BS" in header:
-            f.write('"' + header + '"' + ',' + '\n')
-            # f.write('"' + header + '"' + ',' + '"' + courses + '"' + ',' + '\n')
+            f.write('"' + header + '"' + "," + '"' + course + '"' + ',' + '\n')
 
         else:
             link2list = link_page.findAll("a",{"class":"main"})
@@ -47,9 +57,16 @@ with codecs.open("majors.csv", 'w', 'utf8') as f:
 
                     header2 = link2_page.find('div',{'class':"main-text"}).h1.text
 
-                    f.write('"' + header2 + '"' + ',' + '\n')
-                    # f.write('"' + header2 + '"' + ',' + '"' + courses2 + '"' + ',' + '\n')
+                    maintext2 = link2_page.findAll('p')
+
+                    course2 = ""
+
+                    for paragraph in maintext2:
+                        paragraphtext = paragraph.text
+                        if "Required" in paragraphtext:
+                            course2 = course2 + paragraphtext
+
+                    if " BA"  in header2 or " BS" in header2:
+                        f.write('"' + header2 + '"' + "," + '"' + course2 + '"' + ',' + '\n')
 
 f.close() #closes file
-
-#print required courses to csv and remove duplicate majors and MBA
