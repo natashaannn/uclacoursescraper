@@ -71,19 +71,32 @@ def majorscraper(catalog_url,majors,requirements):
                         majors.append(header2)
                         requirements.append(course2)
 
-#course code scraper
+#course name scraper
 def coursecodescraper(catalog_url,course_names,course_codes):
     uClient = uReq(catalog_url) #downloading and requesting data from url
     catalog_html = uClient.read() #dumping requested data into a variable
     uClient.close() #exiting the requester so that it won't keep requesting data (might cause overloading)
 
-    catalog_page = soup(catalog_html,'html.parser')  #parsing the downloaded data to give a nested data structure for us to navigate
+    catalog_page = soup(catalog_html,'html.parser')
 
-    list = catalog_page.findAll('a',{'class':'main'}) #finds data that corresponds to attributes such as class or id
+    list = catalog_page.findAll('a',{'class':'main'})
 
-    for course in list: #creating the loop for code to run on ALL divs, not just first one
-        course_name = course.text #indicating which particular item within the div we want
-        course_names.append(course_name)
+    for course in list[2:]:
+        course_link = "https://catalog.registrar.ucla.edu/" + course.get("href")
+
+        uClient = uReq(course_link)
+        link_html = uClient.read()
+        uClient.close()
+
+        link_page = soup(link_html,'html.parser')
+
+        course_pages = link_page.findAll('a', {'class':'main'})
+
+        for course_page in course_pages:
+            course_text = course_page.text
+            if "Courses" in course_text:
+                course_name = course_text.replace(' Courses','')
+                course_names.append(course_name)
 
     for x in range(1,199):
         course_number = str(x)
@@ -101,18 +114,43 @@ majors = []
 requirements=[]
 course_names = []
 course_codes = []
-# majorscraper('http://catalog.registrar.ucla.edu/ucla-catalog18-19-4.html', majors)
-coursecodescraper('https://catalog.registrar.ucla.edu/ucla-catalog18-19-271.html', course_names, course_codes)
 majorscraper('https://catalog.registrar.ucla.edu/ucla-catalog18-19-4.html', majors, requirements)
+coursecodescraper('https://catalog.registrar.ucla.edu/ucla-catalog18-19-271.html', course_names, course_codes)
 
-# with codecs.open("major_requirements.csv", 'w', 'utf8') as f:
-#     for requirement, major in zip(requirements, majors):
-#         for course_name in course_names:
-#             if requirement.find(course_name) != -1:
-#                 f.write('"' + major + '"' +  "," + '"' + course_name + '"' + "\n")
-# f.close()
+with codecs.open("major_requirements.csv", 'w', 'utf8') as f:
+    for requirement, major in zip(requirements, majors):
+        for course_name in course_names:
+            if requirement.find(course_name) != -1:
+                f.write('"' + major + '"' +  "," + '"' + course_name + '"' + "\n")
+f.close()
 
-with codecs.open("major_course_requirements.csv", 'w', 'utf8') as f:
+with codecs.open("major_statistics.csv", 'w', 'utf8') as f:
+    for requirement, major in zip(requirements, majors):
+        required_courses = [];
+        for course_name in course_names:
+            if requirement.find(course_name) != -1:
+                required_courses.append(course_name)
+        f.write('"' + major + '"' +  "," + '"' + str(len(required_courses)) + '"' + "\n")
+f.close()
+
+with codecs.open("course_statistics.csv", 'w', 'utf8') as f:
+    for course_name in course_names:
+        majors_require = []
+        for requirement, major in zip(requirements, majors):
+            if requirement.find(course_name) != -1:
+                majors_require.append(major)
+        f.write('"' + course_name + '"' +  "," + '"' + str(len(majors_require)) + '"' + "\n")
+f.close()
+
+with codecs.open("majors_requiring_course.csv", 'w', 'utf8') as f:
+    for course_name in course_names:
+        for requirement, major in zip(requirements, majors):
+            if requirement.find(course_name) != -1:
+                    f.write('"' + course_name + '"' +  "," + '"' + major + '"' + "\n")
+f.close()
+
+
+with codecs.open("major_course_codes.csv", 'w', 'utf8') as f:
     for require, major in zip(requirements, majors):
         indexes = []
         requirement = require.translate(str.maketrans('', '', string.punctuation))
