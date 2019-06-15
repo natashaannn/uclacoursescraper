@@ -1,6 +1,6 @@
 <!DOCTYPE html>
 <html>
-<title>W3.CSS Template</title>
+<title>UCLA Course Scraper</title>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css">
@@ -10,62 +10,445 @@
 body,h1 {font-family: "Raleway", Arial, sans-serif}
 h1 {letter-spacing: 6px}
 .w3-row-padding img {margin-bottom: 12px}
+
+.padding {
+  padding-top: 50px;
+  padding-right: 30px;
+  padding-bottom: 50px;
+  padding-left: 80px;
+}
+pre code {
+  background-color: #eee;
+  border: 1px solid #999;
+  display: block;
+  padding: 20px;
+}
+
 </style>
+<script type="text/javascript" src="https://www.gstatic.com/charts/loader.js"></script>
+<script type="text/javascript">
+  google.charts.load("current", {packages:["corechart"]});
+  google.charts.setOnLoadCallback(drawChart);
+  function drawChart() {
+    var data = google.visualization.arrayToDataTable([
+      ['Major', 'Number of Classes to Major Requirements'],
+      ['Aerospace and Engineering', 8],
+      ['African American Studies', 5],
+      ['African and Middle Eastern Studies', 21],
+      ['American Indian Studies', 5],
+      ['American Literature and Culture', 2],
+      ['Ancient Near East and Egyptology', 27],
+      ['Anthropology', 7],
+      ['Business Economics', 10],
+      ['Economics', 10],
+      ['Applied Linguistics', 35],
+      ['Applied Mathematics', 15],
+      ['Statistics', 2],
+      ['Arabic', 27],
+      ['Architectural Studies', 2],
+      ['Art', 3],
+      ['Art History', 3],
+      ['Asian American Studies', 1],
+      ['Asian Humanities', 15],
+      ['Asian Languages and Linguistics', 18],
+      ['Asian Religions', 15],
+      ['Asian Studies', 18],
+      ['Astrophysics', 15],
+      ['Biophysics', 5],
+      ['Physics', 8],
+      ['Atmospheric and Oceanic Sciences', 9],
+      ['Atmospheric and Oceanic Sciences/Mathematics', 10],
+      ['Climate Science', 16],
+      ['Biochemistry', 12],
+      ['Chemistry', 6],
+      ['Chemistry/Materials Science', 15],
+      ['General Chemistry', 9],
+      ['Bioengineering', 9],
+      ['Biology', 5],
+      ['Biophysics', 10],
+      ['Central and East European Languages and Cultures', 20],
+      ['Chemical Engineering', 10],
+      ['Chicana and Chicano Studies', 2],
+      ['Civil Engineering', 13],
+      ['Classical Civilization', 6],
+      ['Greek', 3],
+      ['Greek and Latin', 4],
+      ['Latin', 3],
+      ['Cognitive Science', 20],
+      ['Communication Studies', 9],
+      ['Comparative Literature', 2],
+      ['Computational and Systems Biology', 11],
+      ['Computer Engineering', 24],
+      ['Computer Science', 8],
+      ['Computer Science and Engineering', 8],
+      ['Dance', 6],
+      ['World Arts and Cultures', 9],
+      ['Design/Media Arts', 2],
+      ['Earth and Environmental Science', 18],
+      ['Ecology, Behavior, and Evolution', 5],
+      ['Electrical Engineering', 12],
+      ['Engineering Geology', 21],
+      ['English', 2],
+      ['Environmental Science', 42],
+      ['Ethnomusicology', 2],
+      ['European Studies', 29],
+      ['Film and Television', 2],
+      ['Financial Actuarial Mathematics', 10],
+      ['French', 2],
+      ['French and Linguistics', 4],
+      ['Gender Studies', 1],
+      ['Geology', 15],
+      ['Geophysics', 12],
+      ['Geography/Environmental Studies', 4],
+      ['German', 2],
+      ['Global Jazz Studies', 3],
+      ['Global Studies', 29],
+      ['Greek', 3],
+      ['Greek and Latin', 4],
+      ['Portuguese', 2],
+      ['Spanish', 1],
+      ['Spanish and Community Culture', 3],
+      ['Spanish and Linguistics', 4],
+      ['History', 2],
+      ['Human Biology and Scoiety', 3],
+      ['International Development Studies', 17],
+      ['Iranian Studies', 18],
+      ['Jewish Studies', 42],
+      ['Middle Eastern Studies', 16],
+      ['Italian', 1],
+      ['Italian and Special Fields', 42],
+      ['Latin', 3],
+      ['Latin American Studies', 14],
+      ['Applied Linguistics', 15],
+      ['Linguistics and Anthropology', 10],
+      ['Linguistics and Asian Languages and Cultures', 2],
+      ['Linguistics and Computer Science', 8],
+      ['Linguistics and English', 6],
+      ['Linguistics and French', 4],
+      ['Linguistics and Italian', 6],
+      ['Linguistics and Philosophy', 7],
+      ['Linguistics and Scandinavian Languages', 4],
+      ['Linguistics and Spanish', 4],
+      ['Linguistics and Psychology', 5],
+      ['Aerospace Engineering', 16],
+      ['Mechanical Engineering', 16],
+      ['Marine Biology', 7],
+      ['Materials Engineering', 24],
+      ['Mathematics', 8],
+      ['Mathematics/Applied Science', 14],
+      ['Mathematics for Teaching', 5],
+      ['Mathematics of Computation', 10],
+      ['Mathematics/Applied Science', 14],
+      ['Mathematics for Teaching', 5],
+      ['Mathematics/Economics', 4],
+      ['Microbiology, Immunology, and Molecular Genetics', 14],
+      ['Middle Eastern Studies', 32],
+      ['Molecular, Cell, and Developmental Biology', 7],
+      ['Music', 1],
+      ['Music Education', 10],
+      ['Musicology', 5],
+      ['Neuroscience', 7],
+      ['Mordic Studies', 8],
+      ['Nursing Prelicensure', 16],
+      ['Philosophy', 1],
+      ['Phsyics', 8],
+      ['Physiological Sciences', 6],
+      ['Political Science', 2],
+      ['Spanish', 2],
+      ['Spanish and Community and Culture', 9],
+      ['Spanish and Linguistics', 8],
+      ['Spanish and Portuguese', 8],
+      ['Psychobiology', 22],
+      ['Psychology', 1],
+      ['Public Affairs', 1],
+      ['Russian Language and Literature', 4],
+      ['Russian Studies', 8],
+      ['Scandinavian Languages and Cultures', 2],
+      ['Portuguese', 1],
+      ['Sociology', 3],
+      ['Statistics', 2],
+      ['Study of Religion', 15],
+      ['Theater', 2]
+    ]);
+    var options = {
+      title: 'Major Requirements',
+      sliceVisibilityThreshold: 0,
+      pieHole: 0.4,
+    };
+    var chart = new google.visualization.PieChart(document.getElementById('donutchart'));
+    chart.draw(data, options);
+  }
+</script>
 <body>
 
 <!-- !PAGE CONTENT! -->
-<div class="w3-content" style="max-width:1500px">
+<div class="padding" style="max-width:1500px">
 
-<!-- Header -->
-<header class="w3-panel w3-center w3-opacity" style="padding:128px 16px">
-  <h1 class="w3-xlarge">Natasha Lum, Elizabeth Nakamura, Kyle Fernando</h1>
-  <h1>Analysis of Major Interdisciplinarity at UCLA</h1>
-  
-  <div class="w3-padding-32">
-    <div class="w3-bar w3-border">
-      <a href="#" class="w3-bar-item w3-button">Home</a>
-      <a href="#" class="w3-bar-item w3-button w3-light-grey">Portfolio</a>
-      <a href="#" class="w3-bar-item w3-button">Contact</a>
-      <a href="#" class="w3-bar-item w3-button w3-hide-small">Weddings</a>
+  <!-- Header -->
+  <header class="w3-panel w3-center w3-opacity" style="padding:128px 16px">
+    <h1 class="w3-xlarge">Natasha Lum, Elizabeth Nakamura, Kyle Fernando</h1>
+    <h1>Analysis of Major Interdisciplinarity</h1>
+
+    <div class="w3-padding-32">
+      <div class="w3-bar w3-border">
+        <a href="#" class="w3-bar-item w3-button">Home</a>
+        <a href="#narrative" class="w3-bar-item w3-button w3-light-grey">Narrative</a>
+        <a href="#findings" class="w3-bar-item w3-button">Findings</a>
+        <a href="#conclusion" class="w3-bar-item w3-button">Conclusion</a>
+        <a href="#references" class="w3-bar-item w3-button">References</a>
+      </div>
     </div>
-  </div>
-</header>
+  </header>
 
-<!-- Photo Grid -->
-<div class="w3-row-padding w3-grayscale" style="margin-bottom:128px">
-  <div class="w3-half">
-    <img src="/w3images/wedding.jpg" style="width:100%">
-    <img src="/w3images/rocks.jpg" style="width:100%">
-    <img src="/w3images/falls2.jpg" style="width:100%">
-    <img src="/w3images/paris.jpg" style="width:100%">
-    <img src="/w3images/nature.jpg" style="width:100%">
-    <img src="/w3images/mist.jpg" style="width:100%">
-    <img src="/w3images/paris.jpg" style="width:100%">
+  <div id="main">
+    <h1>Project Description and Rationale</h1>
+    <h2>What is interdisciplinarity?</h2>
+    <p>The Oxford English Dictionary defines interdisciplinary as “Of or pertaining to two or more disciplines or branches of learning; contributing to or benefiting from two or more disciplines.”
+      <br><br>Interdisciplinarity is thus a combinatory intellectual framework that calls for new models of knowledge and praxis in both the academy and the private sector. Through this project, we sought out the majors at UCLA that would be considered the most interdisciplinary in relation to its required coursework. These majors draw coursework from different fields that would index levels of interdisciplinarity. One of the primary and initial tasks of a student upon enrollment into college is to decide what major and coursework they want to pursue. In <em>Making a “Major” Real-Life Decision: College Students Choosing an Academic Major</em>, Galotti investigates how students structure their decision-making process in declaring a major of study; her findings suggest that “educators and counselors must also be aware, however, that the students who are thinking the most analytically, thoroughly, and rationally (as traditionally defined) will not necessarily find their stress levels decreased or their certainty and comfort levels increased” in terms of picking a major. The purpose of this study is to illustrate the depth and breadth a given major can offer unto a student and assist in the decision-making process.
+      <br><br>Our rationale for this research is derived from our respective backgrounds of study and the potential that intersections of research provide in developing skills in variable directions for a given student. As researchers of the Digital Humanities department, we quantify humanistic studies through the praxis of technology. Digital Humanities is inherently interdisciplinary in nature and the value that it has imparted in approach to research is undeniably multidimensional and can satisfy the breadth of interests and skill sets that a student would want to capitalize within their academic career in preparation for their respective career paths.
+    </p>
+    <h2>Research Questions</h2>
+    <ul>
+      <li>Which courses are the most interdisciplinary in UCLA?</li>
+      <li>What disciplines are most interrelated?</li>
+      <li>What disciplines are the most competitive?</li>
+    </ul>
   </div>
 
-  <div class="w3-half">
-    <img src="/w3images/underwater.jpg" style="width:100%">
-    <img src="/w3images/ocean.jpg" style="width:100%">
-    <img src="/w3images/wedding.jpg" style="width:100%">
-    <img src="/w3images/mountainskies.jpg" style="width:100%">
-    <img src="/w3images/rocks.jpg" style="width:100%">
-    <img src="/w3images/underwater.jpg" style="width:100%">
+  <div id="narrative">
+    <h1>Narrative</h1>
+    <h2>Significance</h2>
+    <p>As a Digital Humanities project, the nature of our work is interdisciplinary. Through this project we utilized digital tools to provide a quantitative, visual understanding of the subject matter, offering an embodied understanding of interdisciplinarity that is not solely theoretical.
+    <br><br>In <em>Interdisciplinary research: Process and theory</em>, Repko writes: “Disciplines are scholarly communities that define which problems should be studied, advance certain central concepts and organizing theories, embrace certain methods of investigation, provide forums for sharing research and insights, and offer career paths for scholars.” As a result, interdisciplinarity is an epistemological challenge to the defining power structures that make up academia. Subsequently, the promotion of interdisciplinarity similarly promotes diversity of perspectives and voices in terms of pedagogy and scholarship. The act of knowing does not occur in isolation, but rather as a series of approximations within the context of others. As we move away from the privileging of individual disciplines, perhaps we can also move away from the privileging of the individual and towards collectivity in the academy.
+    </p>
+    <h2>Audience</h2>
+    <p>Our data selection was drawn almost entirely from the UCLA Registrar’s Office. While our work is most immediately relevant to UCLA students planning out their undergraduate careers, this project also acts as a case study in interdisciplinarity within the public university. By portraying interdisciplinarity through a quantitative perspective, it is our hope that our data might contribute to future horizontal analysis of university-level pedagogy.
+    </p>
+    <h2>Technical Specifications</h2>
+    <p>We utilized a <a href="https://github.com/natashaannn/uclacoursescraper">communal Github repository</a> that enabled us to share the data collected after being scraped from the course site.
+      <br>Using Python, we scraped the UCLA General Catalog for all undergraduate degree majors and their required courses.
+      <br>First, we imported the following Python libraries.
+    </p>
+    <pre>
+      <code>
+        import codecs
+        import bs4 #importing the beautifulsoup library i.e. the webscraping parser
+        from urllib.request import urlopen as uReq #module that opens URLs
+        from bs4 import BeautifulSoup as soup #renaming beautiful soup into something easier to type
+        from string import ascii_uppercase
+        import string
+        import csv
+      </code>
+    </pre>
+    <p>We then created a function to loop through the <a href="https://catalog.registrar.ucla.edu/ucla-catalog18-19-4.html">UCLA General Catalog</a> scrape the major names and their requirements. As some href links for the majors did nomt link directly to the requirements, we also created an if statement to navigate from a secondary page.
+    </p>
+    <pre>
+      <code>
+        def majorscraper(catalog_url,majors,requirements):
+            uClient = uReq(catalog_url) #downloading and requesting data from url
+            catalog_html = uClient.read() #dumping requested data into a variable
+            uClient.close() #exiting the requester so that it won't keep requesting data (might cause overloading)
+
+            catalog_page = soup(catalog_html,'html.parser')  #parsing the downloaded data to give a nested data structure for us to navigate
+
+            list = catalog_page.findAll('a',{'class':"main"}) #finds data that corresponds to attributes such as class or id
+
+            for major in list: #creating the loop for code to run on ALL divs, not just first one
+                major_name = major.text #indicating which particular item within the div we want
+                major_link = "http://catalog.registrar.ucla.edu/" + major.get("href")
+
+                uClient = uReq(major_link)
+                link_html = uClient.read()
+                uClient.close()
+
+                link_page = soup(link_html,'html.parser')
+
+                header = link_page.find('div',{'class':"main-text"}).h1.text
+
+                maintext = link_page.findAll('p')
+
+                course = ""
+
+                for paragraph in maintext:
+                    paragraphtext = paragraph.text
+                    if "Required" in paragraphtext:
+                        course = course + paragraphtext
+
+                if " BA"  in header or " BS" in header:
+                    majors.append(header)
+                    requirements.append(course)
+
+                else:
+                    link2list = link_page.findAll("a",{"class":"main"})
+
+                    for link2 in link2list:
+                        link2text = link2.text
+
+                        if " BA" in link2text or " BS" in link2text:
+                            major_link2 = "http://catalog.registrar.ucla.edu/" + link2.get("href")
+
+                            uClient = uReq(major_link2)
+                            link2_html = uClient.read()
+                            uClient.close()
+
+                            link2_page = soup(link2_html,'html.parser')
+
+                            header2 = link2_page.find('div',{'class':"main-text"}).h1.text
+
+                            maintext2 = link2_page.findAll('p')
+
+                            course2 = ""
+
+                            for paragraph in maintext2:
+                                paragraphtext = paragraph.text
+                                if "Required" in paragraphtext:
+                                    course2 = course2 + paragraphtext
+
+                            if " BA"  in header2 or " BS" in header2:
+                                majors.append(header2)
+                                requirements.append(course2)
+      </code>
+    </pre>
+    <p>We then created a function to loop through the <a href="https://catalog.registrar.ucla.edu/ucla-catalog18-19-271.html">UCLA courses</a> and all available variations of the course codes.
+    </p>
+    <pre>
+      <code>
+        def coursecodescraper(catalog_url,course_names,course_codes):
+            uClient = uReq(catalog_url) #downloading and requesting data from url
+            catalog_html = uClient.read() #dumping requested data into a variable
+            uClient.close() #exiting the requester so that it won't keep requesting data (might cause overloading)
+
+            catalog_page = soup(catalog_html,'html.parser')
+
+            list = catalog_page.findAll('a',{'class':'main'})
+
+            for course in list[2:]:
+                course_link = "https://catalog.registrar.ucla.edu/" + course.get("href")
+
+                uClient = uReq(course_link)
+                link_html = uClient.read()
+                uClient.close()
+
+                link_page = soup(link_html,'html.parser')
+
+                course_pages = link_page.findAll('a', {'class':'main'})
+
+                for course_page in course_pages:
+                    course_text = course_page.text
+                    if "Courses" in course_text:
+                        course_name = course_text.replace(' Courses','')
+                        course_names.append(course_name)
+
+            for x in range(1,199):
+                course_number = str(x)
+
+                course_codes.append(course_number)
+
+                for c in ascii_uppercase:
+                    course_alphanumber = course_number + c
+                    course_numberalpha = c + course_number
+
+                    course_codes.append(course_alphanumber)
+                    course_codes.append(course_numberalpha)
+      </code>
+    </pre>
+    <p>Thereafter we created arrays for majors, requirements, course names and course codes, and then inserted the respective links and array names into the functions.</p>
+    <pre>
+      <code>
+        majors = []
+        requirements=[]
+        course_names = []
+        course_codes = []
+        majorscraper('https://catalog.registrar.ucla.edu/ucla-catalog18-19-4.html', majors, requirements)
+        coursecodescraper('https://catalog.registrar.ucla.edu/ucla-catalog18-19-271.html', course_names, course_codes)
+      </code>
+    </pre>
+    <p>With the scraped values, we then were able to create CSV outputs of the data we needed, namely:</p>
+      <ul>
+        <li>Majors and the number of departments from which they required courses from</li>
+        <pre>
+          <code>
+            with codecs.open("major_statistics.csv", 'w', 'utf8') as f:
+                for requirement, major in zip(requirements, majors):
+                    required_courses = [];
+                    for course_name in course_names:
+                        if requirement.find(course_name) != -1:
+                            required_courses.append(course_name)
+                    f.write('"' + major + '"' +  "," + '"' + str(len(required_courses)) + '"' + "\n")
+            f.close()
+          </code>
+        </pre>
+        <li>Courses and the number of majors that required them</li>
+        <pre>
+          <code>
+            with codecs.open("course_statistics.csv", 'w', 'utf8') as f:
+                for course_name in course_names:
+                    majors_require = []
+                    for requirement, major in zip(requirements, majors):
+                        if requirement.find(course_name) != -1:
+                            majors_require.append(major)
+                    f.write('"' + course_name + '"' +  "," + '"' + str(len(majors_require)) + '"' + "\n")
+            f.close()
+          </code>
+        </pre>
+      </ul>
+      <p>The link to the full code on GitHub can be found <a href="https://github.com/natashaannn/uclacoursescraper/blob/master/courseswebscraper.py">here</a>.</p>
+      <br>
+    <p>
+    We applied several methodologies in creating visualizations. We used Tableau to create several bar charts: Median Income After Graduation and Number of Subjects and GPA, Applicants, and Average 75th Percentile in relation to a given major. We applied a Google Chart API that renders a pie chart comprising the number of classes required for each respective major that drew from coursework from other majors and departments.
+    </p>
+    <h2>Data Selection</h2>
+    <p>We selected data available from the UCLA Registrar and UCLA General Catalog.</p>
+  </div>
+
+  <div id="findings">
+    <h1>Findings</h1>
+      <div class='tableauPlaceholder' id='viz1560577465228' style='position: relative'><noscript><a href='#'><img alt=' ' src='https:&#47;&#47;public.tableau.com&#47;static&#47;images&#47;F8&#47;F8KDT4T74&#47;1_rss.png' style='border: none' /></a></noscript>
+        <object class='tableauViz'  style='display:none;'><param name='host_url' value='https%3A%2F%2Fpublic.tableau.com%2F' /> <param name='embed_code_version' value='3' /> <param name='path' value='shared&#47;F8KDT4T74' /> <param name='toolbar' value='yes' /><param name='static_image' value='https:&#47;&#47;public.tableau.com&#47;static&#47;images&#47;F8&#47;F8KDT4T74&#47;1.png' />
+          <param name='animate_transition' value='yes' /><param name='display_static_image' value='yes' /><param name='display_spinner' value='yes' /><param name='display_overlay' value='yes' /><param name='display_count' value='yes' /><param name='filter' value='publish=yes' /></object>
+      </div>
+      <p>These visualizations attempt to relate the desirability of a major to its interdisciplinarity.  We understood desirability through a couple different lenses: number of applicants, GPA, and median income after graduation. Effectively, we wanted to know if a major with a higher level of interdisciplinarity made it 1) more competitive 2) more economically viable. After comparing transfer GPAs (we used transfer GPA as a metric due to the fact that incoming freshman do not yet have the opportunity to declare their majors), we came to the conclusion that GPA is not a particularly strong way of measuring competitiveness at UCLA simply due to the elite nature of the school.
+        <br><br>
+        African and Middle Eastern Studies, European Studies, and Global Studies were among the majors with the highest level of interdisciplinarity in the humanities with courses in 21 subjects, 29 subjects, and 29 subjects respectively. With all of these majors falling into the category of “other humanities” (earning $54,790 10 years after graduation) in the Median Income After Graduation chart, it seems that interdisciplinarity in the humanities does not offer any remarkable benefits.
+        <br><br>
+        In terms of STEM majors, the most interdisciplinary were: Physics, Mathematics/Applied Science, and Microbiology, Immunology and Genetics with courses coming from 16 subjects, 14 subjects, and 14 subjects respectively. Mathematics/Applied Science had some of the lowest applicant rates of the STEM majors with only 27 applicants. On the other hand, Microbiology, Immunology and Genetics had 557 applicants and Physics, with one of the most applicants per STEM program, had 1,214 applicants. In terms of income, Microbiology ($84,636) and Mathematics ($82,869) had relatively similar median incomes after 10 years. Physics had the greatest median income after 10 years at $90,460.
+        <br><br>
+         Because of the tossup in applicant rates and the overall similar GPA of accepted students across the board, it is hard to tell if interdisciplinarity is in fact a determining factor in a major’s prestige. Without individualized data per major, it is difficult to interpret the long term,  structural impacts of interdisciplinarity in one’s career.
+       </p>
+
+     <div align="left" id="donutchart" style="width: 1600px; height: 800px;padding-top:1px;text-align:left;"></div>
+
+     <br><br>
+     <p>In looking at the number of required courses for each respective major, we can see the stratified requirements that embody each respective major overall. This means that the majors with more requirements draw more material from various other studies. The majors that are clearly distinguishable are thereby the more interdisciplinary in nature. As there are many many majors, the aggregate data shows that the majors with the most requirements comprise 3.2%; several of these majors include Italian and Special Fields, Jewish Studies, and Environmental Science. Italian and Special Fields and Jewish Studies contain requirements from different cultural backgrounds which allow them with the most potential for interdisciplinarity. Environmental Science also is comprised of coursework from areas such as Climate Studies and Atmospheric and Oceanic Studies that give its breadth. Secondary majors that are distinguishable include culturally specific majors as well like Arabic, European Studies, and Ancient Near East and Egyptology. Majors such as Linguistics, Cognitive Science and Computer Science were surprisingly some of the distinguishable majors visible.
+     </p>
+  </div>
+
+  <div id="conclusion">
+    <h1>Conclusion</h1>
+    <p>Because the data scraped from and provided by UCLA only depicts distinct disciplines, our research reproduces information that seeks to delineate majors by discipline therefore providing an inconclusive study of the impact of interdisciplinarity on individual majors at UCLA. Rather, our findings have brought more attention to the strict divide between the Humanities & Social Sciences and STEM.  We began to ponder how can there be a dialectical joining of these two entities, allowing for a student who is well read and skilled in myriad disciplines, that would in turn produce more empathetic and truly well-rounded scholars and subsequently a new type of skilled workforce in the 21st century. The answer lies in an overhaul of current institutional understandings, a radical unlearning and relearning of the implicit cultural biases we all have in terms of labor, the academy, and ourselves. It seems that interdisciplinarity acts as a stepping stone in academia towards a diverse ideology that would surely impact individuals at all levels of the institution.
+    </p>
+  </div>
+
+  <div id="references">
+    <h1>References</h1>
+    <ul>
+      <li>"interdisciplinary, adj.". OED Online. June 2019. Oxford University Press. https://www.oed.com/view/Entry/97720?redirectedFrom=interdisciplinary (accessed June 13, 2019).
+      </li>
+      <li>Galotti, K. M. (1999). Making a “Major” Real-Life Decision: College Students Choosing An Academic Major. American Psychological Association, Inc.</li>
+      <li>Repko, A. F. (2008). Interdisciplinary research: Process and theory. Thousand Oaks: sage.</li>
+      <li>L. Earle Reybold, and Mark D. Halx. "Coming to Terms with the Meaning of Interdisciplinarity: Faculty Rewards and the Authority of the Discipline." The Journal of General Education 61, no. 4 (2012): 323-51. doi:10.5325/jgeneeduc.61.4.0323.</li>
+      <li><a href="https://accountability.universityofcalifornia.edu/2018/chapters/chapter-3.html">https://accountability.universityofcalifornia.edu/2018/chapters/chapter-3.html</a></li>
+    </ul>
   </div>
 </div>
-  
-<!-- End Page Content -->
-</div>
 
-<!-- Footer -->
-<footer class="w3-container w3-padding-64 w3-light-grey w3-center w3-large"> 
-  <i class="fa fa-facebook-official w3-hover-opacity"></i>
-  <i class="fa fa-instagram w3-hover-opacity"></i>
-  <i class="fa fa-snapchat w3-hover-opacity"></i>
-  <i class="fa fa-pinterest-p w3-hover-opacity"></i>
-  <i class="fa fa-twitter w3-hover-opacity"></i>
-  <i class="fa fa-linkedin w3-hover-opacity"></i>
-  <p>Powered by <a href="https://www.w3schools.com/w3css/default.asp" target="_blank" class="w3-hover-text-green">w3.css</a></p>
-</footer>
-
+<script type='text/javascript'>
+  var divElement = document.getElementById('viz1560577465228');
+  var vizElement = divElement.getElementsByTagName('object')[0];
+  vizElement.style.width='100%';vizElement.style.height=(divElement.offsetWidth*0.75)+'px';
+  var scriptElement = document.createElement('script');
+  scriptElement.src = 'https://public.tableau.com/javascripts/api/viz_v1.js';
+  vizElement.parentNode.insertBefore(scriptElement, vizElement);
+</script>
 </body>
 </html>
